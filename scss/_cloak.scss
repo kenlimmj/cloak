@@ -1,0 +1,27 @@
+#{$all-text-inputs}, #{$all-text-inputs-focus}, textarea {
+  border: 0;
+  outline: none;
+  @include fill-parent;
+  background: none;
+  @include box-sizing(border-box);
+  font-size: 2em;
+  @include transition(border 150ms linear);
+}
+
+#{$all-text-inputs} {
+  border-bottom: thin solid #33CCCC;
+}
+
+#{$all-text-inputs-focus} {
+  border-bottom: thin solid #339999;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 2.5em;
+}
+
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.5s linear;
+  opacity: 0.2;
+}
