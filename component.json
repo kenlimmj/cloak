@@ -1,0 +1,13 @@
+{
+  "name": "cloak",
+  "version": "1.0.0",
+  "main": ["./scss/_cloak.scss"],
+  "dependencies": {
+    "bourbon": "~3.1.4"
+  },
+  "ignore": [
+    ".gitignore",
+    "*.md",
+    "docs/"
+  ]
+}
