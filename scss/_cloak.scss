@@ -1,24 +1,39 @@
-#{$all-text-inputs}, #{$all-text-inputs-focus}, textarea {
+// Add styles for meter, progress, optgroup and datalist
+// Add button styles
+// Add down-caret to select group
+// Style option and option:selected in styles
+
+#{$all-text-inputs}, #{$all-text-inputs-focus}, textarea, select {
   border: 0;
   outline: none;
   @include fill-parent;
   background: none;
   @include box-sizing(border-box);
-  font-size: 2em;
+  font-size: 2.5em;
   @include transition(border 150ms linear);
+  font-weight: 100;
+  margin-bottom: 1em;
+  padding-left:0.25em;
+  padding-right:0.25em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  border-radius: 0;
+  border-bottom: thick solid #33CCCC;
 }
 
-#{$all-text-inputs} {
-  border-bottom: thin solid #33CCCC;
+#{$all-text-inputs-focus}, textarea:focus {
+  border-bottom: thick solid #339999;
 }
 
-#{$all-text-inputs-focus} {
-  border-bottom: thin solid #339999;
+select:after {
+  content: "ABC";
 }
 
 textarea {
   resize: vertical;
   min-height: 2.5em;
+
 }
 
 [placeholder]:focus::-webkit-input-placeholder {
