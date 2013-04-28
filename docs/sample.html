@@ -15,13 +15,16 @@
 <body>
   <section>
     <article>
-      <input type="search" placeholder="Search" required autofocus>
-      <input type="email" placeholder="Email" required>
+      <input type="search" placeholder="Search">
+      <input type="email" placeholder="Email" required autofocus>
       <input type="password" placeholder="Password" required>
+      <input list="browsers" placeholder="Choose a Browser">
       <textarea placeholder="Textarea ABC"></textarea>
-      <select placeholder="Choose one">
+      <select>
+        <optgroup label="Test">
         <option>A</option>
         <option>B</option>
+        </optgroup>
         <option>C</option>
         <option>D</option>
         <option>E</option>
@@ -33,6 +36,13 @@
         <option>D</option>
         <option>E</option>
       </select>
+      <datalist id="browsers">
+        <option>Firefox</option>
+        <option>Chrome</option>
+        <option>Internet Explorer</option>
+        <option>Safari</option>
+        <option>Opera</option>
+      </datalist>
       <input type="submit">
     </article>
   </section>

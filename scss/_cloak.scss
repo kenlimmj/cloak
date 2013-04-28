@@ -3,40 +3,63 @@
 // Add down-caret to select group
 // Style option and option:selected in styles
 
-#{$all-text-inputs}, #{$all-text-inputs-focus}, textarea, select {
-  border: 0;
-  outline: none;
-  @include fill-parent;
-  background: none;
-  @include box-sizing(border-box);
-  font-size: 2.5em;
-  @include transition(border 150ms linear);
-  font-family: inherit;
-  font-weight: 100;
-  margin-bottom: 1em;
-  padding-left:0.25em;
-  padding-right:0.25em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  -webkit-appearance: none;
-  border-radius: 0;
-  border-bottom: thick solid $form-border;
+#{$all-text-inputs},
+input[list],
+textarea,
+select {
+  //// Normalization ////
+  outline: none;                                          // Removes the webkit focus ring around the form-field
+  background: none;                                       // Removes the background from the form-field
+  -webkit-appearance: none;                               // Prevents webkit from being smart and adding its own styling
+  -moz-appearance: none;                                  // Prevents firefox from being smart and adding its own styling
+  appearance: none;                                       // Just tells everything to GTFO :D
+  border: 0 none white;                                   // Removes all borders from the form-field
+
+  //// Typography ////
+  font-size: 2.5em;                                       // Increases the font-size for legibility when filling up forms
+  font-family: inherit;                                   // Inherits the font from the parent container. Not doing this means it uses browser defaults
+  font-weight: 100;                                       // Thins out the font for legibility
+  text-overflow: ellipsis;                                // Adds a '...' when text overflows the field
+
+  //// Layout ////
+  @include box-sizing(border-box);                        // Sets border-box sizing on the form-field so it plays nice with margins
+  @include fill-parent;                                   // Expands the field to fill the width of the parent container
+  @include pad(0 0.25em 0 0.25em);                        // Adds a bit of padding to the left and right of the field
+  border-bottom: $border-width solid $border-color;       // Adds a colored line below each field
+  &:focus {
+    border-bottom: $border-width solid $border-focus-color; // Changes the color of the line when focus is given to the field
+  }
+  &:invalid {
+    border-bottom: $border-width solid $border-invalid-color; // Changes the color of the line when focus is given to the field
+  }
+  border-radius: 0;                                       // Removes any border radii, especially for select elements
+  @include transition(border 150ms linear);               // Tells the browser to animate the color change on focus states
+  &:not(:last-child) {
+    margin-bottom: 1em;                                   // Spaces out form fields when they're stacked on each other
+  }
 }
 
-#{$all-text-inputs-focus}, textarea:focus {
-  border-bottom: thick solid $form-border-hover;
-}
-
-select:after {
-  content: "ABC";
+// Uses SVG in a data URI to add a down-caret to the select dropdown
+// The color of the caret for both native and focus states must be manually changed in <svg style="fill:#33CCCC">
+select:not([multiple]) {
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#33CCCC;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
+  background-size: contain;
+  &:focus {
+    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#339999;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
+    background-size: contain;
+  }
 }
 
 textarea {
-  resize: vertical;
-  min-height: 2.5em;
+  resize: vertical;                           // Limits the textarea resizing control to work only vertically (and not horizontally)
+  min-height: 2.5em;                          // Ensures that a textarea is distinguishable from a text field by giving it at least two lines
+  max-height: 100%;                           // Prevents a textarea from stretching beyond the height of the screen
+  overflow: auto;                             // Legacy setting to hide scrollbars when there is nothing to scroll
 }
 
-[placeholder]:focus::-webkit-input-placeholder {
-  transition: opacity 0.5s linear;
-  opacity: 0.2;
+[placeholder]:focus::-webkit-input-placeholder,
+[placeholder]:focus::-moz-placeholder,
+[placeholder]:focus:-ms-input-placeholder {
+  @include transition(opacity 500ms linear);  // Tells the browser to animate the opacity change on focus states
+  opacity: 0.2;                               // Decreases the opacity of the placeholder so it doesn't distract the user
 }
