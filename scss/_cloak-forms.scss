@@ -31,6 +31,12 @@ select {
   &:focus {
     border-bottom: $border-width solid $border-focus-color;   // Changes the color of the line when focus is given to the field
   }
+  // Uses SVG in a data URI to add a check mark when the result is valid
+  // The color of the check mark must be manually changed in <svg style="fill:#33CCCC">
+  &.show-validation:valid {
+    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#33CCCC" width="95.453" height="100"><polygon points="94.587,27.48 31.657,86.15 31.217,85.68 18.847,72.41 0.566,52.81 14.106,40.19 32.387,59.79 81.776,13.74"/></svg>') no-repeat right center;
+    background-size: contain;
+  }
   &:invalid {
     border-bottom: $border-width solid $border-invalid-color; // Changes the color of the line when focus is given to the field
   }

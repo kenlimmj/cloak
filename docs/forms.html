@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Cloak for Forms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <section>
+    <article>
+      <input type="search" placeholder="Search">
+    </article>
+  </section>
+  <section>
+    <article>
+      <h3>Registration Form</h3>
+      <progress max="100" value="80"></progress>
+      <input type="email" placeholder="Email" required autofocus class="show-validation">
+      <input type="password" placeholder="Password" maxlength="20" class="show-validation" required>
+      <input type="submit">
+    </article>
+  </section>
+  <section>
+    <article>
+      <h3>Feedback Form</h3>
+      <input type="date">
+      <input list="browsers" placeholder="Name" class="show-validation" required>
+      <select>
+        <option disabled selected>Choose a Category</option>
+        <option>Technical Support</option>
+        <option>Product Enquiry</option>
+        <option>Corporate Services</option>
+        <option>Recruitment</option>
+      </select>
+      <datalist id="browsers">
+        <option>John</option>
+        <option>Mary</option>
+        <option>Tom</option>
+        <option>Sandra</option>
+        <option>Jack</option>
+      </datalist>
+      <textarea placeholder="What's Wrong?" rows="5" maxlength="4000" required></textarea>
+      <input type="file">
+    </article>
+  </section>
+</body>
+</html>
