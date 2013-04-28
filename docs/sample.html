@@ -15,19 +15,35 @@
 <body>
   <section>
     <article>
+      <input type="date">
+      <input type="number" placeholder="Enter a number">
       <input type="search" placeholder="Search">
+      <input type="range">
+      <meter low="69" high="80" max="100" optimum="100" value="92">A</meter>
+      <meter low="69" high="80" max="100" optimum="100" value="72">C</meter>
+      <meter low="69" high="80" max="100" optimum="100" value="52">E</meter>
+      <progress max="100" value="50"></progress>
       <input type="email" placeholder="Email" required autofocus>
       <input type="password" placeholder="Password" required>
       <input list="browsers" placeholder="Choose a Browser">
+      <datalist id="browsers">
+        <option>Firefox</option>
+        <option>Chrome</option>
+        <option>Internet Explorer</option>
+        <option>Safari</option>
+        <option>Opera</option>
+      </datalist>
       <textarea placeholder="Textarea ABC"></textarea>
       <select>
-        <optgroup label="Test">
+        <optgroup label="Set A">
         <option>A</option>
         <option>B</option>
         </optgroup>
+        <optgroup label="Set B">
         <option>C</option>
         <option>D</option>
         <option>E</option>
+        </optgroup>
       </select>
       <select multiple>
         <option>A</option>
@@ -36,13 +52,6 @@
         <option>D</option>
         <option>E</option>
       </select>
-      <datalist id="browsers">
-        <option>Firefox</option>
-        <option>Chrome</option>
-        <option>Internet Explorer</option>
-        <option>Safari</option>
-        <option>Opera</option>
-      </datalist>
       <input type="submit">
     </article>
   </section>

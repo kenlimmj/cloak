@@ -1,7 +1,5 @@
-// Add styles for meter, progress, optgroup and datalist
+// Add styles for meter, progress, slider
 // Add button styles
-// Add down-caret to select group
-// Style option and option:selected in styles
 
 #{$all-text-inputs},
 input[list],
@@ -39,14 +37,44 @@ select {
   }
 }
 
+::-ms-clear {
+  color: $border-focus-color; // Changes the input[type=text] clear button in IE10 to match the focus color
+}
+
+::-ms-reveal {
+  color: $border-focus-color; // Changes the input[type=password] reveal button in IE10 to match the focus color
+}
+
+input[type="number"] {
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+input[type="date"] {
+  padding-right: 0; // Removes padding from the right since the calendar indicator already has padding
+  &::-webkit-inner-spin-button {
+    display: none; // Hides the spinner buttons because they look totally ridiculous
+  }
+  &::-webkit-calendar-picker-indicator {
+    color: $border-color; // Changes the down caret to match the border color
+  }
+}
+
 // Uses SVG in a data URI to add a down-caret to the select dropdown
 // The color of the caret for both native and focus states must be manually changed in <svg style="fill:#33CCCC">
 select:not([multiple]) {
   background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#33CCCC;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
-  background-size: contain;
+  background-size: contain; // Sets the arrow to expand as large as possible within the field
   &:focus {
     background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#339999;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
-    background-size: contain;
+    background-size: contain; // Sets the arrow to expand as large as possible within the field
+  }
+  &::-ms-expand {
+    color: $border-color; // Changes the select dropdown arrow in IE10 to match the border color
   }
 }
 
@@ -55,6 +83,9 @@ textarea {
   min-height: 2.5em;                          // Ensures that a textarea is distinguishable from a text field by giving it at least two lines
   max-height: 100%;                           // Prevents a textarea from stretching beyond the height of the screen
   overflow: auto;                             // Legacy setting to hide scrollbars when there is nothing to scroll
+  &.resize-none {
+    resize: none;                             // Prevents the textarea from being resized if the 'resize-none' class is added
+  }
 }
 
 [placeholder]:focus::-webkit-input-placeholder,
