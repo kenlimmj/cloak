@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Cloak for Forms</title>
+  <title>Cloak for Forms and Buttons</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro">
@@ -14,24 +14,30 @@
 </head>
 <body>
   <section>
-    <article>
-      <input type="search" placeholder="Search">
+    <article class="text-center">
+      <input type="search" placeholder="Search" class="text-center">
+      <label>Try "Demand and Supply", or anything that's on your mind, really.</label>
     </article>
   </section>
   <section>
     <article>
       <h3>Registration Form</h3>
       <progress max="100" value="80"></progress>
-      <input type="email" placeholder="Email" required autofocus class="show-validation">
+      <input type="email" placeholder="Email Address/Username" required autofocus class="show-validation">
+      <label>The email address you used to sign up, or have you <a href="#">forgotten your email?</a></label>
       <input type="password" placeholder="Password" maxlength="20" class="show-validation" required>
-      <input type="submit">
+      <label>A super-secure set of characters only you know. <a href="#">Forgotten your password?</a></label>
+      <input type="submit" value="Staff Login">
+      <input type="reset">
     </article>
   </section>
   <section>
     <article>
       <h3>Feedback Form</h3>
       <input type="date">
+      <label>When was that auspicious date again?</label>
       <input list="browsers" placeholder="Name" class="show-validation" required>
+      <label>Type the name of your favourite browser, like <strong>Google Chrome</strong>!</label>
       <select>
         <option disabled selected>Choose a Category</option>
         <option>Technical Support</option>
@@ -39,6 +45,7 @@
         <option>Corporate Services</option>
         <option>Recruitment</option>
       </select>
+      <label>For the really, really sad people who can't type :(</label>
       <datalist id="browsers">
         <option>John</option>
         <option>Mary</option>
@@ -47,7 +54,11 @@
         <option>Jack</option>
       </datalist>
       <textarea placeholder="What's Wrong?" rows="5" maxlength="4000" required></textarea>
+      <label>No more than 4000 characters please. What, you don't use Twitter?</label>
       <input type="file">
+      <label>Upload your favourite virus. If the file size is too big your computer will spontaneously explode</label>
+      <br/>
+      <br/>
     </article>
   </section>
 </body>

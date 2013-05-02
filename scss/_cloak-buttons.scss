@@ -1,0 +1,22 @@
+input[type="submit"],
+input[type="reset"],
+button {
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  border: none;
+  padding: 0;
+  @include transition(background-color 200ms linear);
+  height: 1.5em;
+  line-height: 1;
+}
+
+input[type="submit"] {
+  background-color: $border-color;
+  &:hover {
+    background-color: $border-focus-color;
+  }
+}
+
+input[type="reset"] {
+  background-color: $border-invalid-color;
+}

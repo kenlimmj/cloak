@@ -1,4 +1,4 @@
-input:not([type="submit"]),
+input,
 textarea,
 select,
 progress {
@@ -11,17 +11,17 @@ progress {
   border-radius: 0;                                           // Removes any border radii, especially for select elements
   @include box-sizing(border-box);                            // Sets border-box sizing on the form-field so it plays nice with margins
   @include fill-parent;                                       // Expands the field to fill the width of the parent container
-  &:not(:last-child) {
-    margin-bottom: 1em;                                       // Spaces out form fields when they're stacked on each other
+  font-family: inherit;                                       // Inherits the font from the parent container. Not doing this means it uses browser defaults
+  font-weight: 100;                                           // Thins out the font for legibility
+  &:not(:first-child) {
+    margin-top: 1em;                                       // Spaces out form fields when they're stacked on each other
   }
 }
 
 input:not([type="submit"]),
 textarea,
 select {
-  font-size: 2.5em;                                           // Increases the font-size for legibility when filling up forms
-  font-family: inherit;                                       // Inherits the font from the parent container. Not doing this means it uses browser defaults
-  font-weight: 100;                                           // Thins out the font for legibility
+  font-size: 2em;                                           // Increases the font-size for legibility when filling up forms
   text-overflow: ellipsis;                                    // Adds a '...' when text overflows the field
   @include pad(0 0.25em 0 0.25em);                            // Adds a bit of padding to the left and right of the field
   border-bottom: $border-width solid $border-color;           // Adds a colored line below each field
@@ -38,6 +38,10 @@ select {
     border-bottom: $border-width solid $border-invalid-color; // Changes the color of the line when focus is given to the field
   }
   @include transition(border 150ms linear);                   // Tells the browser to animate the color change on focus states
+}
+
+label {
+  @include pad(0 0.5em 0 0.5em);
 }
 
 ::-ms-clear {                                                 // Pseudo-element for the field clear function on IE
