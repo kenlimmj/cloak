@@ -1,7 +1,8 @@
 input,
 textarea,
 select,
-progress {
+progress,
+fieldset {
   outline: none;                                              // Removes the webkit focus ring around the form-field
   background: none;                                           // Removes the background from the form-field
   -webkit-appearance: none;                                   // Prevents webkit from being smart and adding its own styling
@@ -9,6 +10,8 @@ progress {
   appearance: none;                                           // Just tells everything to GTFO :D
   border: 0 none white;                                       // Removes all borders from the form-field
   border-radius: 0;                                           // Removes any border radii, especially for select elements
+  margin: 0;
+  padding: 0;
   @include box-sizing(border-box);                            // Sets border-box sizing on the form-field so it plays nice with margins
   @include fill-parent;                                       // Expands the field to fill the width of the parent container
   font-family: inherit;                                       // Inherits the font from the parent container. Not doing this means it uses browser defaults
@@ -40,8 +43,9 @@ select {
   @include transition(border 150ms linear);                   // Tells the browser to animate the color change on focus states
 }
 
-label {
+label, legend {
   @include pad(0 0.5em 0 0.5em);
+  font-size: 85%;
 }
 
 ::-ms-clear {                                                 // Pseudo-element for the field clear function on IE
@@ -58,6 +62,7 @@ input[type="file"] {
     border: none;                                             // Removes the beveled border from the upload button
     cursor: pointer;                                          // Changes the cursor to a pointing hand when over the field
     padding: 0;                                               // Removes all the padding on the field since the chrome adds its own
+    padding-right: 1em;
     font-family: inherit;                                     // Inherits the font from the parent container. Not doing this means it uses browser defaults
     color: $border-color;                                     // Sets the font-color to the border color
   }
@@ -66,6 +71,7 @@ input[type="file"] {
     border: none;                                             // Removes the beveled border from the upload button
     cursor: pointer;                                          // Changes the cursor to a pointing hand when over the field
     padding: 0;                                               // Removes all the padding on the field since the chrome adds its own
+    padding-right: 1em;
     font-family: inherit;                                     // Inherits the font from the parent container. Not doing this means it uses browser defaults
     color: $border-color;                                     // Sets the font-color to the border color
   }
@@ -73,10 +79,12 @@ input[type="file"] {
 
 progress {
   &::-webkit-progress-bar {                                   // Pseudo-element for the main bar element on Webkit
-    background: none;                                         // Removes the background from the main bar element
+    border-radius: 4em;
+    background: #888;                                         // Removes the background from the main bar element
   }
   &::-webkit-progress-value {                                 // Pseudo-element for the progress bar on Webkit
     background: $border-color;                                // Changes the progress bar color to the border color on Webkit
+    border-radius: 4em 1em 1em 4em;
   }
   &::-moz-progress-bar {                                      // Pseudo-element for the progress bar on Firefox
     background: $border-color;                                // Changes the progress bar color to the border color on Firefox
@@ -127,16 +135,16 @@ textarea {
 }
 
 [placeholder]:focus::-webkit-input-placeholder {              // Pseudo-element for the placeholder text on Webkit
-  @include transition(opacity 500ms linear);                  // Tells the browser to animate the opacity change on focus states
+  @include transition(opacity 300ms linear);                  // Tells the browser to animate the opacity change on focus states
   opacity: 0.2;                                               // Decreases the opacity of the placeholder so it doesn't distract the user
 }
 
 [placeholder]:focus::-moz-placeholder {                       // Pseudo-element for the placeholder text on Firefox
-  @include transition(opacity 500ms linear);                  // Tells the browser to animate the opacity change on focus states
+  @include transition(opacity 300ms linear);                  // Tells the browser to animate the opacity change on focus states
   opacity: 0.2;                                               // Decreases the opacity of the placeholder so it doesn't distract the user
 }
 
 [placeholder]:focus:-ms-input-placeholder {                   // Pseudo-selector for the placeholder text on IE
-  @include transition(opacity 500ms linear);                  // Tells the browser to animate the opacity change on focus states
+  @include transition(opacity 300ms linear);                  // Tells the browser to animate the opacity change on focus states
   opacity: 0.2;                                               // Decreases the opacity of the placeholder so it doesn't distract the user
 }

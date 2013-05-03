@@ -1,16 +1,22 @@
 input[type="submit"],
 input[type="reset"],
 button {
+  @include fill-parent;
   font-size: 1.5em;
+  font-family: inherit;
+  font-weight: 100;
   border-radius: 0.5em;
   border: none;
   padding: 0;
   @include transition(background-color 200ms linear);
   height: 1.5em;
   line-height: 1;
+  &:not(:first-child) {
+    margin-top: 1em;                                       // Spaces out form fields when they're stacked on each other
+  }
 }
 
-input[type="submit"] {
+input[type="submit"], button {
   background-color: $border-color;
   &:hover {
     background-color: $border-focus-color;
@@ -19,4 +25,20 @@ input[type="submit"] {
 
 input[type="reset"] {
   background-color: $border-invalid-color;
+}
+
+fieldset {
+  padding: 0 !important;
+  &:first-child {
+    border-radius: 0.5em 0 0 0.5em;
+  }
+  &:last-child {
+    border-radius: 0 0.5em 0.5em 0;
+  }
+  input[type="submit"] {
+    width: 75%;
+  }
+  input[type="reset"] {
+    width: 25%;
+  }
 }

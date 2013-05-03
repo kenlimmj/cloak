@@ -22,13 +22,17 @@
   <section>
     <article>
       <h3>Registration Form</h3>
-      <progress max="100" value="80"></progress>
+      <progress max="100" value="50"></progress>
       <input type="email" placeholder="Email Address/Username" required autofocus class="show-validation">
       <label>The email address you used to sign up, or have you <a href="#">forgotten your email?</a></label>
       <input type="password" placeholder="Password" maxlength="20" class="show-validation" required>
       <label>A super-secure set of characters only you know. <a href="#">Forgotten your password?</a></label>
       <input type="submit" value="Staff Login">
       <input type="reset">
+      <fieldset>
+        <input type="submit" value="Staff Login">
+        <input type="reset">
+      </fieldset>
     </article>
   </section>
   <section>
@@ -53,10 +57,11 @@
         <option>Sandra</option>
         <option>Jack</option>
       </datalist>
-      <textarea placeholder="What's Wrong?" rows="5" maxlength="4000" required></textarea>
+      <textarea placeholder="What's Wrong?" rows="5" required></textarea>
       <label>No more than 4000 characters please. What, you don't use Twitter?</label>
-      <input type="file">
+      <input type="file" multiple>
       <label>Upload your favourite virus. If the file size is too big your computer will spontaneously explode</label>
+      <button>Submit</button>
       <br/>
       <br/>
     </article>
