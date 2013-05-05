@@ -12,7 +12,7 @@ button {
   height: 1.5em;
   line-height: 1;
   &:not(:first-child) {
-    margin-top: 1em;                                       // Spaces out form fields when they're stacked on each other
+    margin-top: 1em;
   }
 }
 
@@ -28,17 +28,34 @@ input[type="reset"] {
 }
 
 fieldset {
-  padding: 0 !important;
-  &:first-child {
-    border-radius: 0.5em 0 0 0.5em;
+  & button:first-child,
+    input[type="submit"]:first-child,
+    input[type="reset"]:first-child {
+      border-radius: 0.5em 0 0 0.5em;
   }
-  &:last-child {
-    border-radius: 0 0.5em 0.5em 0;
+  & button:last-child,
+    input[type="submit"]:last-child,
+    input[type="reset"]:last-child {
+      border-radius: 0 0.5em 0.5em 0;
   }
-  input[type="submit"] {
-    width: 75%;
+  & button:not(:first-child):not(:last-child),
+    input[type="submit"]:not(:first-child):not(:last-child),
+    input[type="reset"]:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+  & .half {
+    width: 50%;
   }
-  input[type="reset"] {
+  & .one-third {
+    width: 33.33%;
+  }
+  & .one-quarter {
     width: 25%;
+  }
+  & .two-thirds {
+    width: 66.67%;
+  }
+  & .three-quarters {
+    width: 75%;
   }
 }

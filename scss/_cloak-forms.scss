@@ -1,4 +1,5 @@
 input,
+input[type="search"],                                         // Force settings for type="search" to override webkit styles
 textarea,
 select,
 progress,
@@ -10,21 +11,21 @@ fieldset {
   appearance: none;                                           // Just tells everything to GTFO :D
   border: 0 none white;                                       // Removes all borders from the form-field
   border-radius: 0;                                           // Removes any border radii, especially for select elements
-  margin: 0;
-  padding: 0;
+  margin: 0;                                                  // Removes any margins the browser's default styles may add
+  padding: 0;                                                 // Removes any padding the browser's default styles may add
   @include box-sizing(border-box);                            // Sets border-box sizing on the form-field so it plays nice with margins
   @include fill-parent;                                       // Expands the field to fill the width of the parent container
   font-family: inherit;                                       // Inherits the font from the parent container. Not doing this means it uses browser defaults
   font-weight: 100;                                           // Thins out the font for legibility
   &:not(:first-child) {
-    margin-top: 1em;                                       // Spaces out form fields when they're stacked on each other
+    margin-top: 1em;                                          // Spaces out form fields when they're stacked on each other
   }
 }
 
-input:not([type="submit"]),
+input:not([type="submit"]):not([type="reset"]),
 textarea,
 select {
-  font-size: 2em;                                           // Increases the font-size for legibility when filling up forms
+  font-size: 2em;                                             // Increases the font-size for legibility when filling up forms
   text-overflow: ellipsis;                                    // Adds a '...' when text overflows the field
   @include pad(0 0.25em 0 0.25em);                            // Adds a bit of padding to the left and right of the field
   border-bottom: $border-width solid $border-color;           // Adds a colored line below each field
@@ -35,7 +36,8 @@ select {
   // The color of the check mark must be manually changed in <svg style="fill:#33CCCC">
   &.show-validation:valid {
     background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#33CCCC" width="95.453" height="100"><polygon points="94.587,27.48 31.657,86.15 31.217,85.68 18.847,72.41 0.566,52.81 14.106,40.19 32.387,59.79 81.776,13.74"/></svg>') no-repeat right center;
-    background-size: contain;
+    background-size: contain;                                 // Expands the image to fit within the bounds of the field
+    background-origin: content-box;                           // Aligns the image to the content boundaries
   }
   &:invalid {
     border-bottom: $border-width solid $border-invalid-color; // Changes the color of the line when focus is given to the field
@@ -44,8 +46,8 @@ select {
 }
 
 label, legend {
-  @include pad(0 0.5em 0 0.5em);
-  font-size: 85%;
+  @include pad(0 0.5em 0 0.5em);                              // Adds some padding to the labels so they line up with the fields
+  font-size: 85%;                                             // Equivalent to setting <small> on the label content
 }
 
 ::-ms-clear {                                                 // Pseudo-element for the field clear function on IE
@@ -62,7 +64,7 @@ input[type="file"] {
     border: none;                                             // Removes the beveled border from the upload button
     cursor: pointer;                                          // Changes the cursor to a pointing hand when over the field
     padding: 0;                                               // Removes all the padding on the field since the chrome adds its own
-    padding-right: 1em;
+    padding-right: 1em;                                       // Moves the file path to the right to give the button space
     font-family: inherit;                                     // Inherits the font from the parent container. Not doing this means it uses browser defaults
     color: $border-color;                                     // Sets the font-color to the border color
   }
@@ -71,7 +73,7 @@ input[type="file"] {
     border: none;                                             // Removes the beveled border from the upload button
     cursor: pointer;                                          // Changes the cursor to a pointing hand when over the field
     padding: 0;                                               // Removes all the padding on the field since the chrome adds its own
-    padding-right: 1em;
+    padding-right: 1em;                                       // Moves the file path to the right to give the button space
     font-family: inherit;                                     // Inherits the font from the parent container. Not doing this means it uses browser defaults
     color: $border-color;                                     // Sets the font-color to the border color
   }
@@ -79,18 +81,22 @@ input[type="file"] {
 
 progress {
   &::-webkit-progress-bar {                                   // Pseudo-element for the main bar element on Webkit
-    border-radius: 4em;
-    background: #888;                                         // Removes the background from the main bar element
+    border-radius: 0.5em;                                     // Rounds off the bar to match the look of the buttons
+    border: 0.15em solid $border-color;                       // Adds a thin border so people know what max progress is
+    background: none;                                         // Removes the background from the main bar element
   }
   &::-webkit-progress-value {                                 // Pseudo-element for the progress bar on Webkit
     background: $border-color;                                // Changes the progress bar color to the border color on Webkit
-    border-radius: 4em 1em 1em 4em;
+    border-radius: 0 0.125em 0.125em 0;                       // Makes the current progress position more angular and well defined
+    @include transition(width 200ms linear);                  // Allows for progress changes to animate nicely
   }
   &::-moz-progress-bar {                                      // Pseudo-element for the progress bar on Firefox
     background: $border-color;                                // Changes the progress bar color to the border color on Firefox
+    @include transition(width 200ms linear);                  // Allows for progress changes to animate nicely
   }
   &::-ms-fill {                                               // Pseudo-element for the progress bar on IE
     background: $border-color;                                // Changes the progress bar color to the border color on IE
+    @include transition(width 200ms linear);                  // Allows for progress changes to animate nicely
   }
 }
 
@@ -118,9 +124,11 @@ input[type="date"] {
 select:not([multiple]) {
   background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#33CCCC;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
   background-size: contain;                                   // Sets the arrow to expand as large as possible within the field
+  background-origin: content-box;                             // Aligns the image to the content boundaries
   &:focus {
     background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" style="fill:#339999;" width="100" height="100"><path d="M50.111 72.659c-1.061 0-2.078-.422-2.829-1.172l-30.007-30.013c-1.562-1.562-1.562-4.095.001-5.657 1.563-1.562 4.096-1.562 5.657 0l27.178 27.185 27.178-27.185c1.562-1.562 4.095-1.562 5.657 0 1.562 1.562 1.562 4.094.001 5.657l-30.007 30.013c-.751.75-1.768 1.172-2.829 1.172z"/></svg>') no-repeat right center;
     background-size: contain;                                 // Sets the arrow to expand as large as possible within the field
+    background-origin: content-box;                           // Aligns the image to the content boundaries
   }
   &::-ms-expand {                                             // Pseudo-element for the dropdown selector arrow on IE
     color: $border-color;                                     // Changes the select dropdown arrow in IE10 to match the border color
