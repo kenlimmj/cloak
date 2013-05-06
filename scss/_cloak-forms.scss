@@ -3,7 +3,8 @@ input[type="search"],                                         // Force settings 
 textarea,
 select,
 progress,
-fieldset {
+fieldset,
+button {
   outline: none;                                              // Removes the webkit focus ring around the form-field
   background: none;                                           // Removes the background from the form-field
   -webkit-appearance: none;                                   // Prevents webkit from being smart and adding its own styling
@@ -27,7 +28,7 @@ textarea,
 select {
   font-size: 2em;                                             // Increases the font-size for legibility when filling up forms
   text-overflow: ellipsis;                                    // Adds a '...' when text overflows the field
-  @include pad(0 0.25em 0 0.25em);                            // Adds a bit of padding to the left and right of the field
+  @include pad(0 $field-padding 0 $field-padding);            // Adds a bit of padding to the left and right of the field
   border-bottom: $border-width solid $border-color;           // Adds a colored line below each field
   &:focus {
     border-bottom: $border-width solid $border-focus-color;   // Changes the color of the line when focus is given to the field
@@ -46,7 +47,7 @@ select {
 }
 
 label, legend {
-  @include pad(0 0.5em 0 0.5em);                              // Adds some padding to the labels so they line up with the fields
+  @include pad(0 $field-padding*2 0 $field-padding*2);        // Adds some padding to the labels so they line up with the fields
   font-size: 85%;                                             // Equivalent to setting <small> on the label content
 }
 
@@ -81,13 +82,13 @@ input[type="file"] {
 
 progress {
   &::-webkit-progress-bar {                                   // Pseudo-element for the main bar element on Webkit
-    border-radius: 0.5em;                                     // Rounds off the bar to match the look of the buttons
+    border-radius: $round-radius;                             // Rounds off the bar to match the look of the buttons
     border: 0.15em solid $border-color;                       // Adds a thin border so people know what max progress is
     background: none;                                         // Removes the background from the main bar element
   }
   &::-webkit-progress-value {                                 // Pseudo-element for the progress bar on Webkit
     background: $border-color;                                // Changes the progress bar color to the border color on Webkit
-    border-radius: 0 0.125em 0.125em 0;                       // Makes the current progress position more angular and well defined
+    border-radius: 0 $round-radius/4 $round-radius/4 0;       // Makes the current progress position more angular and well defined
     @include transition(width 200ms linear);                  // Allows for progress changes to animate nicely
   }
   &::-moz-progress-bar {                                      // Pseudo-element for the progress bar on Firefox
