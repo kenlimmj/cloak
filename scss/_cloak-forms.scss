@@ -43,6 +43,10 @@ select {
   &:invalid {
     border-bottom: $border-width solid $border-invalid-color; // Changes the color of the line when focus is given to the field
   }
+  &:disabled {
+    cursor: not-allowed;
+    border-bottom: $border-width solid $border-disabled-color;
+  }
   @include transition(border 150ms linear);                   // Tells the browser to animate the color change on focus states
 }
 
@@ -77,6 +81,15 @@ input[type="file"] {
     padding-right: 1em;                                       // Moves the file path to the right to give the button space
     font-family: inherit;                                     // Inherits the font from the parent container. Not doing this means it uses browser defaults
     color: $border-color;                                     // Sets the font-color to the border color
+  }
+  &:disabled {
+    &::-webkit-file-upload-button {
+      cursor: not-allowed;
+      color: $border-disabled-color;
+    }
+    &::-ms-browse {
+      color: $border-disabled-color;
+    }
   }
 }
 
@@ -117,6 +130,12 @@ input[type="date"] {
   }
   &::-webkit-calendar-picker-indicator {                      // Pseudo-element for the calendar selection caret on Webkit
     color: $border-color;                                     // Changes the down caret to match the border color
+  }
+  &:disabled {
+    &::-webkit-calendar-picker-indicator {                      // Pseudo-element for the calendar selection caret on Webkit
+      pointer-events: none;
+      color: $border-disabled-color;                                     // Changes the down caret to match the border color
+    }
   }
 }
 
